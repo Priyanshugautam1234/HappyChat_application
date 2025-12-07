@@ -20,6 +20,34 @@ Unlike any other chat app, **HappyChat feels what you feel**. The entire applica
     -   Fire and rage symbols for anger.
 
 *Experience a chat that's alive.*
+
+## 📂 Project Structure
+
+```bash
+📦 HappyChat
+ ┣ 📂 backend                 # Express Server & API
+ ┃ ┣ 📂 src
+ ┃ ┃ ┣ 📂 controllers         # Logic for Auth & Messages
+ ┃ ┃ ┣ 📂 lib                 # DB, Socket.io, Cloudinary setup
+ ┃ ┃ ┣ 📂 middleware          # Auth protection middleware
+ ┃ ┃ ┣ 📂 models              # Mongoose Schemas (User, Message)
+ ┃ ┃ ┣ 📂 routes              # API Endpoints
+ ┃ ┃ ┗ 📜 index.js            # Server entry point
+ ┃ ┗ 📜 package.json
+ ┣ 📂 frontend                # React + Vite Client
+ ┃ ┣ 📂 public                # Static assets
+ ┃ ┣ 📂 src
+ ┃ ┃ ┣ 📂 components          # Reusable UI (Navbar, ChatContainer, MoodBackground)
+ ┃ ┃ ┣ 📂 lib                 # Utilities & Axios instance
+ ┃ ┃ ┣ 📂 pages               # Full pages (Home, Login, Profile)
+ ┃ ┃ ┣ 📂 store               # Zustand Global State
+ ┃ ┃ ┣ 📜 App.jsx             # Main Component
+ ┃ ┃ ┗ 📜 main.jsx            # React Entry
+ ┃ ┣ 📜 tailwind.config.js    # Custom Theme Configuration
+ ┃ ┗ 📜 vite.config.js
+ ┗ 📜 README.md
+```
+
 Highlights:
 
 - 🌟 Tech stack: MERN + Socket.io + TailwindCSS + Daisy UI
