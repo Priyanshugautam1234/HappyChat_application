@@ -1,17 +1,17 @@
-# ✨ Full Stack Realtime Chat App ✨
+# Full Stack Realtime Chat App 
 
 
 
 
-### 🎭 Unique Feature: Dynamic Mood Experience
+###  Unique Feature: Dynamic Mood Experience
 
 Unlike any other chat app, **HappyChat feels what you feel**. The entire application interface adapts in real-time based on the sentiment of your conversation.
 
 -   **Mood Themes**: Type "happy", "love", "angry", or "sad", and watch the colors change instantly!
-    -   🌼 **Happy**: Faded Yellow background with Pale Gold bubbles.
-    -   💖 **Love**: Romantic Pink themes.
-    -   🔥 **Angry**: Intense Faded Red background.
-    -   🌧️ **Sad**: Melancholic Blue-Grey.
+    -    **Happy**: Faded Yellow background with Pale Gold bubbles.
+    -    **Love**: Romantic Pink themes.
+    -    **Angry**: Intense Faded Red background.
+    -    **Sad**: Melancholic Blue-Grey.
 
 -   **Floating Background Emojis**: The background comes alive with floating animations!
     -   Laughing faces and suns for happiness.
@@ -21,7 +21,7 @@ Unlike any other chat app, **HappyChat feels what you feel**. The entire applica
 
 *Experience a chat that's alive.*
 
-## 📂 Project Structure
+##  Project Structure
 
 ```bash
 📦 HappyChat
@@ -50,14 +50,14 @@ Unlike any other chat app, **HappyChat feels what you feel**. The entire applica
 
 Highlights:
 
-- 🌟 Tech stack: MERN + Socket.io + TailwindCSS + Daisy UI
-- 🎃 Authentication && Authorization with JWT
-- 👾 Real-time messaging with Socket.io
-- 🚀 Online user status
-- 👌 Global state management with Zustand
-- 🐞 Error handling both on the server and on the client
-- ⭐ At the end Deployment like a pro for FREE!
-- ⏳ And much more!
+-  Tech stack: MERN + Socket.io + TailwindCSS + Daisy UI
+-  Authentication && Authorization with JWT
+-  Real-time messaging with Socket.io
+-  Online user status
+-  Global state management with Zustand
+-  Error handling both on the server and on the client
+-  At the end Deployment like a pro for FREE!
+-  And much more!
 
 ### Setup .env file
 
