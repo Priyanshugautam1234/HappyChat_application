@@ -7,7 +7,7 @@ export function formatMessageTime(date) {
 }
 
 export function isOnlyEmojis(text) {
-  if (!text) return false;
+  if (!text) return false;ca 
   // Regex matches strings that contain ONLY emojis and whitespace
   // \p{Emoji} matches emoji characters
   // \p{Extended_Pictographic} catches newer emojis
@@ -20,23 +20,26 @@ export function getThemeBySentiment(text) {
 
   const lowerText = text.toLowerCase();
 
+  // Helper for whole word matching
+  const hasWord = (words) => words.some(w => new RegExp(`\\b${w}\\b`, "i").test(lowerText));
+
   // Happy/Excited -> happy (Custom Dark Yellow)
-  if (["happy", "lol", "haha", "great", "awesome", "good", "yay", "cool", "smile", "funny", "comedy", "fun", "happiness", "excited", "party", "joy", "laugh"].some(w => lowerText.includes(w))) {
+  if (hasWord(["happy", "lol", "haha", "great", "awesome", "good", "yay", "cool", "smile", "funny", "comedy", "fun", "happiness", "excited", "party", "joy", "laugh"])) {
     return "custom-happy";
   }
 
   // Love/Romantic -> valentine (Pink)
-  if (["love", "heart", "xoxo", "cute", "kiss", "baby", "sweet", "darling", "honey", "crush", "hug", "miss you", "adore", "romance"].some(w => lowerText.includes(w))) {
+  if (hasWord(["love", "heart", "xoxo", "cute", "kiss", "baby", "sweet", "darling", "honey", "crush", "hug", "miss you", "adore", "romance"])) {
     return "valentine";
   }
 
   // Angry/Intense -> custom-angry (Faded Red)
-  if (["angry", "hate", "mad", "stupid", "idiot", "bad", "wtf", "annoying", "furious", "rage", "shut up", "worst", "damn", "hell"].some(w => lowerText.includes(w))) {
+  if (hasWord(["angry", "hate", "mad", "stupid", "idiot", "bad", "wtf", "annoying", "furious", "rage", "shut up", "worst", "damn", "hell"])) {
     return "custom-angry";
   }
 
   // Sad/Melancholy -> nord (Blue-Grey)
-  if (["sad", "cry", "sorry", "miss", "hurt", "pain", "blue", "depressed", "lonely", "grief", "broken", "tears", "upset", "unhappy"].some(w => lowerText.includes(w))) {
+  if (hasWord(["sad", "cry", "sorry", "miss", "hurt", "pain", "blue", "depressed", "lonely", "grief", "broken", "tears", "upset", "unhappy"])) {
     return "nord";
   }
 

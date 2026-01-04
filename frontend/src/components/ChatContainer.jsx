@@ -17,20 +17,32 @@ const ChatContainer = () => {
     subscribeToMessages,
     unsubscribeFromMessages,
   } = useChatStore();
+
   const { authUser } = useAuthStore();
   const { theme } = useThemeStore();
   const messageEndRef = useRef(null);
 
-  useEffect(() => {
-    getMessages(selectedUser._id);
 
+  // 🛡️ Prevent blank screen when no user selected
+  if (!selectedUser) {
+    return (
+      <div className="flex-1 flex items-center justify-center text-gray-400">
+        Select a user to start chatting
+      </div>
+    );
+  }
+
+  useEffect(() => {
+    if (!selectedUser?._id) return;
+
+    getMessages(selectedUser._id);
     subscribeToMessages();
 
     return () => unsubscribeFromMessages();
-  }, [selectedUser._id, getMessages, subscribeToMessages, unsubscribeFromMessages]);
+  }, [selectedUser?._id, getMessages, subscribeToMessages, unsubscribeFromMessages]);
 
   useEffect(() => {
-    if (messageEndRef.current && messages) {
+    if (messageEndRef.current) {
       messageEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
@@ -50,13 +62,14 @@ const ChatContainer = () => {
       <ChatHeader />
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.map((message) => (
+        {messages.map((message, index) => (
           <div
             key={message._id}
-            className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"} animate-message`}
-            ref={messageEndRef}
+            ref={index === messages.length - 1 ? messageEndRef : null}
+            className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"
+              } animate-message`}
           >
-            <div className=" chat-image avatar">
+            <div className="chat-image avatar">
               <div className="size-10 rounded-full border">
                 <img
                   src={
@@ -73,31 +86,11 @@ const ChatContainer = () => {
                 {formatMessageTime(message.createdAt)}
               </time>
             </div>
-            <div className={`chat-bubble flex flex-col p-2 ${message.senderId === authUser._id
-              ? isOnlyEmojis(message.text) && !message.image && !message.video
-                ? "bg-transparent shadow-none border-none p-0 !text-4xl" // Sent Emoji
-                : theme === "custom-happy"
-                  ? "bg-[#FEF08A] text-[#422006]"
-                  : theme === "custom-angry"
-                    ? "bg-[#FCA5A5] text-[#450A0A]"
-                    : "bg-gradient-to-r from-primary to-secondary text-primary-content"
-              : isOnlyEmojis(message.text) && !message.image && !message.video
-                ? "bg-transparent shadow-none border-none p-0 !text-4xl" // Received Emoji
-                : (theme === "custom-happy" || theme === "custom-angry")
-                  ? "bg-base-200 text-base-content"
-                  : "glass text-base-content"
-              }`}>
+            <div className="chat-bubble flex flex-col">
               {message.image && (
                 <img
                   src={message.image}
                   alt="Attachment"
-                  className="sm:max-w-[200px] rounded-md mb-2"
-                />
-              )}
-              {message.video && (
-                <video
-                  src={message.video}
-                  controls
                   className="sm:max-w-[200px] rounded-md mb-2"
                 />
               )}
@@ -108,7 +101,7 @@ const ChatContainer = () => {
       </div>
 
       <MessageInput />
-    </div>
+    </div >
   );
 };
 export default ChatContainer;
