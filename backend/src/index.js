@@ -34,8 +34,9 @@ app.use("/api/messages", messageRoutes);
 
 // Serve frontend in production
 // Serve frontend in production
+// Serve frontend in production
 if (process.env.NODE_ENV === "production") {
-  const frontendPath = path.join(__dirname, "../../frontend/dist");
+  const frontendPath = path.resolve("frontend/dist");
 
   app.use(express.static(frontendPath));
 
@@ -43,6 +44,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(frontendPath, "index.html"));
   });
 }
+
 
 
 // Start server
